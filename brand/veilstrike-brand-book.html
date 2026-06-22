@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veilstrike — Brand Book · Twilight Tactician</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Silkscreen:wght@400;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --abyss:#0E1726; --slate:#1C2C42; --surface:#243B57; --line:#3A5570;
+    --teal:#2BB6A3; --glow:#7FE0D4; --mist:#E8EDF2; --muted:#8AA0B5;
+    --warrior:#C0894E; --rogue:#E6D24A; --mage:#8AA6EC; --priest:#CDD8E4;
+    --warning:#E0A93B; --danger:#D9534F; --info:#4A9BE0;
+    --pixel:'Silkscreen', monospace; --body:'Inter', system-ui, sans-serif; --mono:'JetBrains Mono', monospace;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--abyss); color:var(--mist); font-family:var(--body); line-height:1.65; font-size:16px;
+    background-image:radial-gradient(circle at 30% 0%, rgba(43,182,163,0.06), transparent 60%);}
+  .wrap{max-width:920px; margin:0 auto; padding:0 28px;}
+  header.hero{padding:88px 0 64px; border-bottom:1px solid var(--line);}
+  .kicker{font-family:var(--mono); font-size:12px; letter-spacing:3px; text-transform:uppercase; color:var(--teal); margin:0 0 22px;}
+  h1.logo{font-family:var(--pixel); font-size:54px; line-height:1; margin:0 0 18px; color:var(--mist); letter-spacing:1px;}
+  h1.logo .strike{color:var(--teal);}
+  .tagline{font-size:20px; color:var(--glow); margin:0 0 10px; font-weight:500;}
+  .sub{color:var(--muted); max-width:560px; margin:0;}
+  section{padding:56px 0; border-bottom:1px solid rgba(58,85,112,0.4);}
+  .secnum{font-family:var(--mono); font-size:12px; color:var(--teal); letter-spacing:2px;}
+  h2{font-family:var(--pixel); font-size:24px; margin:6px 0 8px; font-weight:400; letter-spacing:.5px;}
+  h3{font-size:17px; font-weight:600; color:var(--glow); margin:32px 0 12px; letter-spacing:.3px;}
+  p{margin:0 0 16px; color:#C4D2DF;}
+  .lead{color:var(--mist); font-size:17px;}
+  code{font-family:var(--mono); font-size:13px; background:var(--slate); padding:2px 7px; border-radius:3px; color:var(--glow);}
+  .grid{display:grid; gap:14px;}
+  .sw{border:1px solid var(--line); border-radius:6px; overflow:hidden; background:var(--slate);}
+  .sw .chip{height:88px; display:flex; align-items:flex-end; padding:10px;}
+  .sw .meta{padding:11px 13px;}
+  .sw .nm{font-weight:600; font-size:14px; display:block;}
+  .sw .hx{font-family:var(--mono); font-size:12px; color:var(--muted);}
+  .sw .role{font-size:12px; color:var(--muted); display:block; margin-top:4px;}
+  .badge{display:inline-block; font-family:var(--mono); font-size:11px; padding:2px 7px; border-radius:3px; letter-spacing:.5px;}
+  .pass{background:rgba(43,182,163,.16); color:var(--glow);}
+  table{width:100%; border-collapse:collapse; margin:8px 0 4px; font-size:14px;}
+  th,td{text-align:left; padding:11px 12px; border-bottom:1px solid rgba(58,85,112,.5);}
+  th{font-family:var(--mono); font-size:11px; text-transform:uppercase; letter-spacing:1px; color:var(--muted); font-weight:500;}
+  td{color:#C4D2DF;}
+  .classcard{border:1px solid var(--line); border-radius:8px; padding:18px; background:var(--slate); position:relative; overflow:hidden;}
+  .classcard .dot{width:38px; height:38px; border-radius:7px; margin-bottom:12px; box-shadow:0 0 0 4px rgba(255,255,255,.04);}
+  .classcard h4{margin:0 0 4px; font-size:16px; font-family:var(--pixel); font-weight:400; letter-spacing:.5px;}
+  .classcard .hx{font-family:var(--mono); font-size:12px; color:var(--muted);}
+  .classcard p{font-size:13px; margin:10px 0 0; color:var(--muted);}
+  .type-spec{border:1px solid var(--line); border-radius:8px; padding:22px 24px; background:var(--slate); margin-bottom:14px;}
+  .type-spec .label{font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:1px; text-transform:uppercase; display:block; margin-bottom:14px;}
+  .dodont{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+  .do,.dont{border-radius:8px; padding:18px; font-size:14px;}
+  .do{background:rgba(43,182,163,.08); border:1px solid rgba(43,182,163,.35);}
+  .dont{background:rgba(217,83,79,.07); border:1px solid rgba(217,83,79,.35);}
+  .do h4,.dont h4{margin:0 0 10px; font-size:13px; font-family:var(--mono); letter-spacing:1px; text-transform:uppercase;}
+  .do h4{color:var(--glow);} .dont h4{color:var(--danger);}
+  .do ul,.dont ul{margin:0; padding-left:18px;} .do li,.dont li{margin:6px 0; color:#C4D2DF;}
+  .ui-demo{border:1px solid var(--line); border-radius:8px; padding:26px; background:linear-gradient(180deg,var(--slate),var(--abyss));}
+  .btn{font-family:var(--body); font-weight:600; border:none; border-radius:4px; padding:11px 20px; cursor:pointer; font-size:14px; letter-spacing:.3px;}
+  .btn-primary{background:var(--teal); color:var(--abyss);}
+  .btn-ghost{background:transparent; color:var(--glow); border:1.5px solid var(--teal);}
+  .hexwrap{display:flex; gap:6px; flex-wrap:wrap; align-items:center; justify-content:center; padding:10px 0;}
+  .voice-row{display:grid; grid-template-columns:130px 1fr; gap:16px; padding:14px 0; border-bottom:1px solid rgba(58,85,112,.4); align-items:baseline;}
+  .voice-row .k{font-family:var(--mono); font-size:12px; color:var(--teal); letter-spacing:1px;}
+  .ex{font-style:italic; color:var(--glow);}
+  footer{padding:48px 0 80px; color:var(--muted); font-size:13px;}
+  .toc{display:flex; flex-wrap:wrap; gap:8px 18px; margin-top:28px;}
+  .toc a{color:var(--muted); text-decoration:none; font-size:13px; font-family:var(--mono); letter-spacing:.5px;}
+  .toc a:hover{color:var(--glow);}
+  @media(max-width:680px){ h1.logo{font-size:38px;} .dodont{grid-template-columns:1fr;} .voice-row{grid-template-columns:1fr;} }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">Brand Book · v1.0 · Direction A</p>
+    <h1 class="logo">VEIL<span class="strike">STRIKE</span></h1>
+    <p class="tagline">Twilight Tactician</p>
+    <p class="sub">A cool, atmospheric identity for a mobile-first PvP strategy game — where the board is half-hidden, every move is calculated, and the fog itself is part of the fight.</p>
+    <nav class="toc">
+      <a href="#essence">01 Essence</a>
+      <a href="#logo">02 Logo</a>
+      <a href="#color">03 Color</a>
+      <a href="#classes">04 Classes</a>
+      <a href="#type">05 Type</a>
+      <a href="#pixel">06 Pixel art</a>
+      <a href="#ui">07 UI tokens</a>
+      <a href="#voice">08 Voice</a>
+    </nav>
+  </div>
+</header>
+
+<section id="essence">
+  <div class="wrap">
+    <span class="secnum">01</span>
+    <h2>Essence</h2>
+    <p class="lead">Veilstrike lives at the meeting point of chess and poker: deep tactical skill, shrouded in incomplete information. The brand should feel like dusk over a battlefield you can only half-see — calm on the surface, charged underneath.</p>
+    <h3>Three words</h3>
+    <p><strong style="color:var(--glow)">Misty</strong> — fog of war is the signature mechanic and the signature mood. &nbsp;·&nbsp; <strong style="color:var(--glow)">Cerebral</strong> — this is a thinking game; the design respects the player's intelligence. &nbsp;·&nbsp; <strong style="color:var(--glow)">Clean</strong> — minimalist pixel art, no clutter, gameplay reads instantly on a small screen.</p>
+    <h3>Brand promise</h3>
+    <p>Every match is winnable with the right read. We reward patience, deception, and nerve — not just reflexes or luck. The visual language should always make the player feel like a tactician, never a gambler.</p>
+  </div>
+</section>
+
+<section id="logo">
+  <div class="wrap">
+    <span class="secnum">02</span>
+    <h2>Logo &amp; wordmark</h2>
+    <p>The wordmark is set in <strong>Silkscreen</strong>, a crisp pixel typeface, locked in two tones: <code>VEIL</code> in Mist, <code>STRIKE</code> in Teal Core. The split reinforces the name's two halves — concealment and decisive action.</p>
+    <div class="ui-demo" style="text-align:center; padding:48px 26px;">
+      <div style="font-family:var(--pixel); font-size:46px; letter-spacing:1px;">VEIL<span style="color:var(--teal)">STRIKE</span></div>
+      <div style="font-family:var(--mono); font-size:12px; color:var(--muted); margin-top:18px; letter-spacing:2px;">PRIMARY LOCKUP</div>
+    </div>
+    <h3>The mark</h3>
+    <p>The app-icon mark is a single <strong>pointy-top hexagon</strong> bisected by a diagonal slash — a hex tile being "struck." The lower half sits in shadow (Abyss), the upper half catches Teal Glow light, reading as a tile half-revealed by lifting fog. It stays legible at 48×48px on a home screen.</p>
+    <div class="hexwrap">
+      <svg width="120" height="132" viewBox="0 0 120 132" role="img" aria-label="Veilstrike hex mark">
+        <defs><clipPath id="hx"><polygon points="60,4 112,34 112,98 60,128 8,98 8,34"/></clipPath></defs>
+        <g clip-path="url(#hx)">
+          <rect x="0" y="0" width="120" height="132" fill="#1C2C42"/>
+          <polygon points="0,132 120,0 120,28 28,132" fill="#0E1726"/>
+          <polygon points="60,4 112,34 112,40 60,10 8,40 8,34" fill="#7FE0D4"/>
+          <polygon points="0,132 120,0 124,4 4,136" fill="#2BB6A3"/>
+        </g>
+        <polygon points="60,4 112,34 112,98 60,128 8,98 8,34" fill="none" stroke="#0A111C" stroke-width="3"/>
+      </svg>
+    </div>
+    <h3>Clear space &amp; don'ts</h3>
+    <div class="dodont">
+      <div class="do">
+        <h4>Do</h4>
+        <ul>
+          <li>Keep clear space of one "E" height on all sides.</li>
+          <li>Use the mark alone for the app icon and favicon.</li>
+          <li>Render at integer pixel scales (1×, 2×, 3×) only.</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Add glows, bevels, or drop shadows to the wordmark.</li>
+          <li>Recolor STRIKE to anything but Teal Core or Mist.</li>
+          <li>Anti-alias or scale the pixel logo to fractional sizes.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="color">
+  <div class="wrap">
+    <span class="secnum">03</span>
+    <h2>Color system</h2>
+    <p class="lead">A deep, cool foundation with a single luminous teal accent. Darks carry the fog; teal carries the action. Every text/background pairing below was checked against WCAG 2.1 — all meet AA.</p>
+
+    <h3>Core palette</h3>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+      <div class="sw"><div class="chip" style="background:#0E1726;"></div><div class="meta"><span class="nm">Abyss</span><span class="hx">#0E1726</span><span class="role">App background · deep fog</span></div></div>
+      <div class="sw"><div class="chip" style="background:#1C2C42;"></div><div class="meta"><span class="nm">Slate</span><span class="hx">#1C2C42</span><span class="role">Panels · cards</span></div></div>
+      <div class="sw"><div class="chip" style="background:#243B57;"></div><div class="meta"><span class="nm">Surface</span><span class="hx">#243B57</span><span class="role">Raised / hover</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2BB6A3;"></div><div class="meta"><span class="nm">Teal Core</span><span class="hx">#2BB6A3</span><span class="role">Primary accent · CTAs</span></div></div>
+      <div class="sw"><div class="chip" style="background:#7FE0D4;"></div><div class="meta"><span class="nm">Teal Glow</span><span class="hx">#7FE0D4</span><span class="role">Active · highlights</span></div></div>
+      <div class="sw"><div class="chip" style="background:#E8EDF2;"></div><div class="meta"><span class="nm">Mist</span><span class="hx" style="color:#5F6B78">#E8EDF2</span><span class="role">Primary text on dark</span></div></div>
+      <div class="sw"><div class="chip" style="background:#8AA0B5;"></div><div class="meta"><span class="nm">Haze</span><span class="hx">#8AA0B5</span><span class="role">Secondary text</span></div></div>
+      <div class="sw"><div class="chip" style="background:#3A5570;"></div><div class="meta"><span class="nm">Line</span><span class="hx">#3A5570</span><span class="role">Borders · dividers</span></div></div>
+    </div>
+
+    <h3>Semantic</h3>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr));">
+      <div class="sw"><div class="chip" style="background:#4A9BE0;"></div><div class="meta"><span class="nm">Info</span><span class="hx">#4A9BE0</span></div></div>
+      <div class="sw"><div class="chip" style="background:#2BB6A3;"></div><div class="meta"><span class="nm">Success</span><span class="hx">#2BB6A3</span></div></div>
+      <div class="sw"><div class="chip" style="background:#E0A93B;"></div><div class="meta"><span class="nm">Warning</span><span class="hx">#E0A93B</span></div></div>
+      <div class="sw"><div class="chip" style="background:#D9534F;"></div><div class="meta"><span class="nm">Danger</span><span class="hx">#D9534F</span></div></div>
+    </div>
+
+    <h3>Verified contrast (WCAG 2.1)</h3>
+    <table>
+      <tr><th>Foreground</th><th>Background</th><th>Ratio</th><th>Rating</th></tr>
+      <tr><td>Mist text</td><td>Abyss</td><td>15.25:1</td><td><span class="badge pass">AAA</span></td></tr>
+      <tr><td>Mist text</td><td>Slate panel</td><td>11.98:1</td><td><span class="badge pass">AAA</span></td></tr>
+      <tr><td>Haze (secondary)</td><td>Abyss</td><td>6.65:1</td><td><span class="badge pass">AA</span></td></tr>
+      <tr><td>Teal Core</td><td>Abyss</td><td>7.12:1</td><td><span class="badge pass">AA</span></td></tr>
+      <tr><td>Abyss text</td><td>Teal Core button</td><td>7.12:1</td><td><span class="badge pass">AA</span></td></tr>
+      <tr><td>Danger</td><td>Abyss</td><td>4.53:1</td><td><span class="badge pass">AA</span></td></tr>
+    </table>
+    <p style="font-size:13px; color:var(--muted)">Rule of thumb: body text is always Mist or Haze on Abyss/Slate. Never place small text directly on Teal Core — use Abyss text on teal instead.</p>
+  </div>
+</section>
+
+<section id="classes">
+  <div class="wrap">
+    <span class="secnum">04</span>
+    <h2>Class color system</h2>
+    <p class="lead">Each of the four classes owns one hue, chosen to stay distinct from the teal UI accent and from each other — including for the most common color-vision deficiencies. Color is always paired with an icon and a shape so it never carries meaning alone.</p>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); margin-top:8px;">
+      <div class="classcard"><div class="dot" style="background:#C0894E;"></div><h4>Warrior</h4><span class="hx">#C0894E · Ironwood</span><p>Warm brown. Melee, frontline pressure, durability. Icon: blade. Shape: shield.</p></div>
+      <div class="classcard"><div class="dot" style="background:#E6D24A;"></div><h4>Rogue</h4><span class="hx">#E6D24A · Sulfur</span><p>Pale yellow. Stealth, burst, positioning. Icon: dagger. Shape: triangle.</p></div>
+      <div class="classcard"><div class="dot" style="background:#8AA6EC;"></div><h4>Mage</h4><span class="hx">#8AA6EC · Arcane</span><p>Cool periwinkle. Ranged AoE, control, risk. Icon: orb. Shape: diamond.</p></div>
+      <div class="classcard"><div class="dot" style="background:#CDD8E4;"></div><h4>Priest</h4><span class="hx">#CDD8E4 · Pale Halo</span><p>Soft white. Healing, buffs, denial. Icon: cross. Shape: circle.</p></div>
+    </div>
+    <p style="font-size:13px; color:var(--muted); margin-top:18px;">All four pass AA (≥4.5:1) on the Slate panel background. Warrior (brown) and Rogue (yellow) are adjacent warm hues, so they're separated by lightness and the blade/dagger icons; never rely on hue alone.</p>
+  </div>
+</section>
+
+<section id="type">
+  <div class="wrap">
+    <span class="secnum">05</span>
+    <h2>Typography</h2>
+    <p class="lead">Two faces. <strong>Silkscreen</strong> (pixel) for display, logo, numbers, and labels — it ties the UI to the pixel-art world. <strong>Inter</strong> for everything readable: menus, tooltips, body, long-form. <strong>JetBrains Mono</strong> for stats, timers, and seeds.</p>
+
+    <div class="type-spec">
+      <span class="label">Display · Silkscreen · headings, HUD labels, scores</span>
+      <div style="font-family:var(--pixel); font-size:30px; line-height:1.3;">STRIKE FROM THE FOG</div>
+    </div>
+    <div class="type-spec">
+      <span class="label">Body · Inter Regular 16/1.65 · tooltips, descriptions, menus</span>
+      <div style="font-family:var(--body); font-size:16px;">The rogue slips two tiles through unscouted terrain. You can't see her — but you can see where she <em>can't</em> be. Plan accordingly.</div>
+    </div>
+    <div class="type-spec">
+      <span class="label">Mono · JetBrains Mono · stats, timers, match seeds</span>
+      <div style="font-family:var(--mono); font-size:15px; color:var(--glow);">HP 24/30 · MP 8 · CRIT 35% · seed 0x9F3A·turn 12 · 00:18</div>
+    </div>
+
+    <h3>Type scale</h3>
+    <table>
+      <tr><th>Token</th><th>Face</th><th>Size / line</th><th>Use</th></tr>
+      <tr><td><code>display-xl</code></td><td>Silkscreen</td><td>40 / 1.1</td><td>Splash, victory</td></tr>
+      <tr><td><code>display</code></td><td>Silkscreen</td><td>24 / 1.3</td><td>Screen titles</td></tr>
+      <tr><td><code>label</code></td><td>Silkscreen</td><td>12 / 1.4</td><td>HUD, buttons</td></tr>
+      <tr><td><code>body</code></td><td>Inter 400</td><td>16 / 1.65</td><td>Default text</td></tr>
+      <tr><td><code>body-sm</code></td><td>Inter 400</td><td>14 / 1.5</td><td>Tooltips, captions</td></tr>
+      <tr><td><code>stat</code></td><td>JetBrains Mono</td><td>15 / 1.4</td><td>Numbers, timers</td></tr>
+    </table>
+    <p style="font-size:13px; color:var(--muted)">Pixel type renders best at multiples of its native size. Avoid Silkscreen below 12px or for paragraphs — it's a label face, not a reading face.</p>
+  </div>
+</section>
+
+<section id="pixel">
+  <div class="wrap">
+    <span class="secnum">06</span>
+    <h2>Pixel-art guidelines</h2>
+    <p class="lead">Minimalist, gameplay-first sprites that read instantly on a low-end Android screen. Consistency comes from a fixed grid, a tight per-sprite palette, and a single dark outline.</p>
+    <h3>Rules</h3>
+    <table>
+      <tr><th>Aspect</th><th>Standard</th></tr>
+      <tr><td>Base unit</td><td>Sprites authored at 32×32px; tiles at 32×32. Scale by integers only (nearest-neighbor).</td></tr>
+      <tr><td>Grid</td><td>Pointy-top hexagons. Map tiles align to a flat-bottom hex lattice.</td></tr>
+      <tr><td>Outline</td><td>1px outline in Outline Black <code>#0A111C</code> on all unit sprites. Selective (no outline where sprite meets shadow).</td></tr>
+      <tr><td>Palette / sprite</td><td>≤ 8 colors per sprite, drawn from the brand palette + the owning class hue.</td></tr>
+      <tr><td>Shading</td><td>2-step max (base + 1 shadow + 1 highlight). No gradients — use ordered dithering for transitions.</td></tr>
+      <tr><td>Fog of war</td><td>Unexplored: Abyss at 100%. Explored-but-unseen: Abyss overlay at 78% with 2px dither edge. Visible: full color.</td></tr>
+      <tr><td>Rendering</td><td><code>image-rendering: pixelated;</code> in CSS / Phaser <code>pixelArt:true, roundPixels:true</code>.</td></tr>
+    </table>
+    <div class="ui-demo" style="margin-top:18px;">
+      <div class="hexwrap">
+        <svg width="280" height="120" viewBox="0 0 280 120" role="img" aria-label="Fog of war tile states">
+          <g>
+            <polygon points="40,8 70,24 70,56 40,72 10,56 10,24" fill="#2BB6A3" stroke="#0A111C" stroke-width="2"/>
+            <text x="40" y="100" fill="#8AA0B5" font-family="'JetBrains Mono'" font-size="10" text-anchor="middle">visible</text>
+          </g>
+          <g>
+            <polygon points="140,8 170,24 170,56 140,72 110,56 110,24" fill="#1C2C42" stroke="#0A111C" stroke-width="2"/>
+            <polygon points="140,8 170,24 170,56 140,72 110,56 110,24" fill="#0E1726" opacity="0.78"/>
+            <text x="140" y="100" fill="#8AA0B5" font-family="'JetBrains Mono'" font-size="10" text-anchor="middle">explored</text>
+          </g>
+          <g>
+            <polygon points="240,8 270,24 270,56 240,72 210,56 210,24" fill="#0E1726" stroke="#0A111C" stroke-width="2"/>
+            <text x="240" y="100" fill="#8AA0B5" font-family="'JetBrains Mono'" font-size="10" text-anchor="middle">unexplored</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ui">
+  <div class="wrap">
+    <span class="secnum">07</span>
+    <h2>UI tokens &amp; components</h2>
+    <p class="lead">A mobile-first system: large touch targets, low-chrome surfaces, teal reserved for the one action that matters on each screen.</p>
+    <h3>Spacing &amp; radius</h3>
+    <p>Spacing scale (px): <code>4</code> <code>8</code> <code>12</code> <code>16</code> <code>24</code> <code>32</code> <code>48</code>. Radius: <code>2</code> (chips), <code>4</code> (buttons/cards), <code>8</code> (sheets). Minimum touch target: <strong>44×44px</strong>. Borders: 1px Line; 1.5px for focus rings in Teal Glow.</p>
+    <h3>Buttons</h3>
+    <div class="ui-demo">
+      <div style="display:flex; gap:14px; flex-wrap:wrap; align-items:center;">
+        <button class="btn btn-primary">Find match</button>
+        <button class="btn btn-ghost">Spectate</button>
+        <button class="btn" style="background:var(--surface); color:var(--mist);">Cancel</button>
+        <button class="btn" style="background:var(--danger); color:#2A0E0D;">Surrender</button>
+      </div>
+      <p style="font-size:13px; color:var(--muted); margin:18px 0 0;">Primary teal appears <strong>once</strong> per screen. Ghost for secondary, Surface for tertiary, Danger only for destructive/irreversible actions.</p>
+    </div>
+    <h3>Principles</h3>
+    <div class="dodont">
+      <div class="do">
+        <h4>Do</h4>
+        <ul>
+          <li>Let the board breathe — UI floats at the edges, never over the action.</li>
+          <li>Use Silkscreen labels sparingly; Inter for anything a player reads under time pressure.</li>
+          <li>Animate state changes in 120–200ms; snappy, not flashy.</li>
+        </ul>
+      </div>
+      <div class="dont">
+        <h4>Don't</h4>
+        <ul>
+          <li>Stack multiple teal CTAs — it kills the hierarchy.</li>
+          <li>Use pure white (#FFFFFF) or pure black — always Mist and Abyss.</li>
+          <li>Add gloss, gradients on UI chrome, or particle spam that hides the grid.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="voice">
+  <div class="wrap">
+    <span class="secnum">08</span>
+    <h2>Voice &amp; tone</h2>
+    <p class="lead">Terse, tactical, quietly confident. Veilstrike talks like a veteran strategist: economical with words, never hyped, with a cold edge of mystery. It respects the player.</p>
+    <div class="voice-row"><div class="k">WE ARE</div><div>Sharp, calm, precise. We name the play, not the hype.</div></div>
+    <div class="voice-row"><div class="k">WE AREN'T</div><div>Loud, cute, or gimmicky. No exclamation-mark spam, no slang-of-the-week.</div></div>
+    <div class="voice-row"><div class="k">TAGLINE</div><div class="ex">"Strike from the fog."</div></div>
+    <div class="voice-row"><div class="k">VICTORY</div><div class="ex">"Read. Predicted. Won."</div></div>
+    <div class="voice-row"><div class="k">DEFEAT</div><div class="ex">"Outplayed. Study the replay."</div></div>
+    <div class="voice-row"><div class="k">EMPTY STATE</div><div class="ex">"No scouts deployed. The map is yours to uncover."</div></div>
+    <div class="voice-row"><div class="k">MATCHMAKING</div><div class="ex">"Finding an opponent worth your time…"</div></div>
+    <div class="voice-row"><div class="k">ERROR</div><div class="ex">"Connection lost in the fog. Reconnecting…"</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Veilstrike Brand Book · Direction A "Twilight Tactician" · v1.0 · June 2026<br>
+    Palette tokens available as <code>veilstrike-tokens.css</code>. All contrast ratios verified to WCAG 2.1 AA.
+  </div>
+</footer>
+
+</body>
+</html>
