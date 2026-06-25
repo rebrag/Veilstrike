@@ -16,7 +16,7 @@ spring:
       ddl-auto: validate
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
 
 app:
   jwt:
