@@ -64,4 +64,60 @@ public class AuthService {
 
         return new AuthResponse(result.accessToken(), result.refreshToken());
     }
+
+    /**
+     * Find-or-create flow for a verified Google identity, then converge on the SAME
+     * JWT issuance path as local login. Returns the standard access + refresh token pair.
+     */
+    @Transactional
+    public AuthResponse processGoogleLogin(
+            String googleId,
+            String email,
+            String displayName,
+            boolean emailVerified,
+            String userAgent,
+            String ipAddress) {
+
+        User user = userRepository.findByGoogleId(googleId).orElse(null);
+
+        if (user == null) {
+            // No account is linked to this Google id yet. See if the email is already taken.
+            User existing = userRepository.findByEmail(email).orElse(null);
+
+            if (existing != null) {
+                // The email belongs to an existing account (typically a LOCAL one).
+                // Only link the Google identity if Google has VERIFIED the email — that
+                // proves the person signing in actually controls this address. Without
+                // that proof, linking would let anyone with a matching Google email
+                // hijack the local account.
+                if (!emailVerified) {
+                    throw new ApiException(HttpStatus.CONFLICT,
+                            "This email is already registered. Sign in with your password.");
+                }
+                // Link: attach the google_id to the existing account. We keep the
+                // original auth_provider (e.g. LOCAL) so the user can still sign in with
+                // their password as well — the DB constraint is satisfied because a LOCAL
+                // account already has a password_hash.
+                existing.setGoogleId(googleId);
+                user = userRepository.save(existing);
+            } else {
+                // Brand-new user: create a GOOGLE account (no password_hash).
+                User newUser = new User();
+                newUser.setEmail(email);
+                newUser.setGoogleId(googleId);
+                newUser.setAuthProvider(AuthProvider.GOOGLE);
+                newUser.setDisplayName(normalizeDisplayName(displayName, email));
+                user = userRepository.save(newUser);
+            }
+        }
+
+        String accessToken = jwtService.generateAccessToken(user);
+        String refreshToken = jwtService.generateRefreshToken(user, userAgent, ipAddress);
+        return new AuthResponse(accessToken, refreshToken);
+    }
+
+    private String normalizeDisplayName(String displayName, String email) {
+        String name = (displayName == null || displayName.isBlank()) ? email : displayName;
+        return name.length() > 50 ? name.substring(0, 50) : name;
+    }
 }

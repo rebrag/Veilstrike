@@ -18,11 +18,23 @@ spring:
       hibernate:
         format_sql: true
 
+  security:
+    oauth2:
+      client:
+        registration:
+          google:
+            client-id: ${GOOGLE_CLIENT_ID}
+            client-secret: ${GOOGLE_CLIENT_SECRET}
+            scope:
+              - email
+              - profile
+
 app:
   jwt:
     secret: ${JWT_SECRET}
     access-token-expiration: 900000    # 15 minutes
     refresh-token-expiration: 604800000 # 7 days
-  google:
-    client-id: ${GOOGLE_CLIENT_ID}
-    client-secret: ${GOOGLE_CLIENT_SECRET}
+  oauth2:
+    # Where the backend redirects after a successful Google login, handing the
+    # frontend the freshly minted JWT pair. Point this at your PWA's callback route.
+    redirect-uri: ${OAUTH2_REDIRECT_URI:http://localhost:5173/oauth/callback}
